@@ -21,6 +21,7 @@ function proof (x) {
 	const Q = Buffer.from(secp256k1.getPublicKey(x));
 
 	// challenge through a Fiat-Shamir transformation.
+	// FIXME: Concat userID, timestamp or some info to this!
 	const challenge = crypto.createHash('sha256').update(Buffer.concat([Q,V])).digest('hex');
 	const hashint = BigInt("0x"+challenge)
 
